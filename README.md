@@ -1,5 +1,5 @@
 Java8InAction
-===============
+---
 
 This repository contains all the source code for the examples and quizzes in the book Java 8 in Action: Lambdas, Streams and functional-style programming.
 
@@ -38,17 +38,15 @@ java version "1.8.0_05"
 Java(TM) SE Runtime Environment (build 1.8.0_05-b13)
 Java HotSpot(TM) 64-Bit Server VM (build 25.5-b02, mixed mode)
 
-
 You can download a preview version here: https://jdk8.java.net/
 
 ### Compile/Run the examples
 Using maven:
 
+```
 $ mvn compile
-
 $ cd target/classes
-
 $ java lambdasinaction/chap1/FilteringApples
-
+```
 
 Alternatively you can compile the files manually inside the directory src/main/java

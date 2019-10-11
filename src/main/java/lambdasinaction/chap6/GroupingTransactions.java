@@ -26,22 +26,27 @@ public class GroupingTransactions {
     }
 
     private static void groupImperatively() {
+        // 그룹화된 트랜잭션을 더할 Map 생성
         Map<Currency, List<Transaction>> transactionsByCurrencies = new HashMap<>();
+
         for (Transaction transaction : transactions) {
-            Currency currency = transaction.getCurrency();
+            Currency currency = transaction.getCurrency(); // 트랜잭션의 통화 추출
             List<Transaction> transactionsForCurrency = transactionsByCurrencies.get(currency);
+            // 현재 통화의 그룹화된 맵에 항목이 없으면 새로 만든다.
             if (transactionsForCurrency == null) {
                     transactionsForCurrency = new ArrayList<>();
                 transactionsByCurrencies.put(currency, transactionsForCurrency);
             }
+            // 현재 탐색된 트랜잭션을 같은 통화의 트랜잭션 리스트에 추가
             transactionsForCurrency.add(transaction);
         }
-
         System.out.println(transactionsByCurrencies);
     }
 
     private static void groupFunctionally() {
-        Map<Currency, List<Transaction>> transactionsByCurrencies = transactions.stream().collect(groupingBy(Transaction::getCurrency));
+        // 통화로 그룹화
+        Map<Currency, List<Transaction>> transactionsByCurrencies = transactions.stream()
+                                                                                .collect(groupingBy(Transaction::getCurrency));
         System.out.println(transactionsByCurrencies);
     }
 

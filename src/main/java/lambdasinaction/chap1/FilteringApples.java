@@ -9,8 +9,9 @@ public class FilteringApples{
 
         List<Apple> inventory = Arrays.asList(new Apple(80,"green"),
                                               new Apple(155, "green"),
-                                              new Apple(120, "red"));	
+                                              new Apple(120, "red"));
 
+        /* [사용법1] 메서드를 값으로 전달 (문제: 한두 번 사용할 메서드를 매번 정의) */
         // [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
         List<Apple> greenApples = filterApples(inventory, FilteringApples::isGreenApple);
         System.out.println(greenApples);
@@ -18,7 +19,8 @@ public class FilteringApples{
         // [Apple{color='green', weight=155}]
         List<Apple> heavyApples = filterApples(inventory, FilteringApples::isHeavyApple);
         System.out.println(heavyApples);
-        
+
+        /* [사용법2] 람다 이용 (문제: 코드가 길어지면 명확성이 떨어짐) */
         // [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
         List<Apple> greenApples2 = filterApples(inventory, (Apple a) -> "green".equals(a.getColor()));
         System.out.println(greenApples2);
@@ -61,10 +63,13 @@ public class FilteringApples{
         return apple.getWeight() > 150;
     }
 
+    /**
+     * Predicate: 인수로 값을 받아 true/false 를 반환하는 함수
+     */
     public static List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> p){
         List<Apple> result = new ArrayList<>();
         for(Apple apple : inventory){
-            if(p.test(apple)){
+            if(p.test(apple)){ // 사과는 p 가 제시하는 조건에 맞는가?
                 result.add(apple);
             }
         }
